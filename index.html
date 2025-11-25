@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Models - Comprehensive Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .overview-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .overview-card h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .model-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid #667eea;
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .model-header h2 {
+            color: #1e293b;
+            font-size: 1.75rem;
+        }
+
+        .subsection {
+            margin: 2rem 0;
+        }
+
+        .subsection h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #0369a1;
+            margin-bottom: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+
+        .code-property {
+            color: #fbbf24;
+        }
+
+        .code-value {
+            color: #34d399;
+        }
+
+        .code-comment {
+            color: #94a3b8;
+        }
+
+        .image-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .warning-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .relationships {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .relationships h4 {
+            color: #334155;
+            margin-bottom: 1rem;
+        }
+
+        .relationships ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .relationships li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .relationships li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .flow-diagram {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .flow-step:not(:last-child):after {
+            content: "↓";
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #667eea;
+            margin: 0.5rem 0;
+        }
+
+        .flow-step h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .summary-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .summary-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary-table tr:hover {
+            background: #f8fafc;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .image-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">SM</div>
+                Service Models
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#flow">Data Flow</a></li>
+                <li><a href="#summary">Summary</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Service Models Documentation</h1>
+        <p>Comprehensive technical guide for multi-tenant service booking systems</p>
+    </div>
+
+    <div class="container">
+        <div class="overview-card" id="overview">
+            <h2>📋 Overview</h2>
+            <p>These models represent a <strong>multi-tenant service booking system</strong> for a business platform. Think of it like platforms such as Uber, Airbnb, or TaskRabbit where businesses offer services at different locations and customers can book them.</p>
+        </div>
+
+        <!-- Model 1: ServiceType -->
+        <div class="model-section" id="models">
+            <div class="model-header">
+                <div class="model-number">1</div>
+                <h2>ServiceType Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>A category or classification of services that a business offers.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example</h4>
+                <p>Imagine a company called "BeautyPro" that offers beauty services:</p>
+                <div class="image-showcase">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500" alt="Hair Services">
+                        <div class="image-caption"><strong>ServiceType 1:</strong> Hair Services</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500" alt="Makeup Services">
+                        <div class="image-caption"><strong>ServiceType 2:</strong> Makeup Services</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500" alt="Nail Services">
+                        <div class="image-caption"><strong>ServiceType 3:</strong> Nail Services</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Key Properties Explained</h3>
+                <div class="code-block">
+<span class="code-property">ServiceTypeId</span> = <span class="code-value">1</span>
+<span class="code-property">TypeName</span> = <span class="code-value">"Hair Services"</span>
+<span class="code-property">Description</span> = <span class="code-value">"Professional hair cutting, coloring, and styling services"</span>
+<span class="code-property">CompanyBusinessId</span> = <span class="code-value">5</span> <span class="code-comment">(BeautyPro's business ID)</span>
+<span class="code-property">CreatedDate</span> = <span class="code-value">Jan 1, 2024</span>
+<span class="code-property">IsActive</span> = <span class="code-value">true</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Why It Matters</h3>
+                <div class="info-badge">Categorization</div>
+                <div class="info-badge">Navigation</div>
+                <div class="info-badge">Reporting</div>
+                <p style="margin-top: 1rem;">Helps organize what types of services a business offers, allowing customers to browse by service type and businesses to analyze revenue by category.</p>
+            </div>
+
+            <div class="relationships">
+                <h4>Relationships</h4>
+                <ul>
+                    <li>One ServiceType has <strong>many Services</strong> (Hair cutting, hair coloring, hair styling are all Hair Services)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Model 2: Service -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">2</div>
+                <h2>Service Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>A specific service offering under a ServiceType.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example</h4>
+                <p>Under the "Hair Services" ServiceType, BeautyPro offers:</p>
+                <div class="image-showcase">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1521490683712-35a1cb235d1c?w=500" alt="Haircut Service">
+                        <div class="image-caption"><strong>Service 1:</strong> Basic Haircut - $25</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500" alt="Hair Coloring">
+                        <div class="image-caption"><strong>Service 2:</strong> Hair Coloring - $75</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500" alt="Hair Styling">
+                        <div class="image-caption"><strong>Service 3:</strong> Hair Styling - $50</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Key Properties Explained</h3>
+                <div class="code-block">
+<span class="code-property">ServiceId</span> = <span class="code-value">101</span>
+<span class="code-property">Name</span> = <span class="code-value">"Professional Hair Coloring"</span>
+<span class="code-property">SecondaryName</span> = <span class="code-value">"Full Color Treatment"</span>
+<span class="code-property">Description</span> = <span class="code-value">"Complete hair coloring with premium products"</span>
+<span class="code-property">CurrentPrice</span> = <span class="code-value">75.00</span>
+<span class="code-property">ServiceTypeId</span> = <span class="code-value">1</span> <span class="code-comment">(Hair Services)</span>
+<span class="code-property">CompanyBusinessId</span> = <span class="code-value">5</span> <span class="code-comment">(BeautyPro)</span>
+<span class="code-property">IsActive</span> = <span class="code-value">true</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Important Notes About Structure</h3>
+                <p><strong>Multi-Level Pricing:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><code>CurrentPrice</code> in Service = General price across all locations</li>
+                    <li>But each location can have a different price (see ServiceCompanyBusinessLocation)</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Example:</strong> BeautyPro Downtown charges $75 for hair coloring, while BeautyPro Mall location charges $85 for the same service.</p>
+            </div>
+
+            <div class="relationships">
+                <h4>Relationships</h4>
+                <ul>
+                    <li>One Service belongs to one <strong>ServiceType</strong></li>
+                    <li>One Service belongs to one <strong>CompanyBusiness</strong></li>
+                    <li>One Service has <strong>many ServiceImages</strong> (before/after photos)</li>
+                    <li>One Service has <strong>many ServiceCompanyBusinessLocations</strong> (available at multiple locations)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Model 3: ServiceCompanyBusinessLocation -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">3</div>
+                <h2>ServiceCompanyBusinessLocation Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>A bridge table that links Services to specific business locations and defines location-specific pricing.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example</h4>
+                <p>BeautyPro operates in 3 locations:</p>
+                <div class="image-showcase">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=500" alt="Downtown Branch">
+                        <div class="image-caption"><strong>Downtown Branch</strong><br>Hair Coloring: $75</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=500" alt="Mall Branch">
+                        <div class="image-caption"><strong>Shopping Mall Branch</strong><br>Hair Coloring: $85</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1541692641319-981cc79ee10a?w=500" alt="Airport Branch">
+                        <div class="image-caption"><strong>Airport Branch</strong><br>Hair Coloring: $95 (Premium)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Example Configuration</h3>
+                <div class="code-block">
+<span class="code-property">ServiceCompanyBusinessLocationId</span> = <span class="code-value">1001</span>
+<span class="code-property">ServiceId</span> = <span class="code-value">101</span> <span class="code-comment">(Hair Coloring)</span>
+<span class="code-property">Name</span> = <span class="code-value">"Hair Coloring - Downtown"</span>
+<span class="code-property">ServicePrice</span> = <span class="code-value">75.00</span>
+<span class="code-property">CompanyBusinessLocationId</span> = <span class="code-value">10</span> <span class="code-comment">(BeautyPro Downtown)</span>
+<span class="code-property">IsActive</span> = <span class="code-value">true</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Why This Model Exists</h3>
+                <p>Without this model, you'd have to create a separate Service record for each location, causing massive data duplication. This model elegantly solves that by letting one Service appear in many locations with different prices.</p>
+            </div>
+
+            <div class="relationships">
+                <h4>Relationships</h4>
+                <ul>
+                    <li>One Service can have <strong>many ServiceCompanyBusinessLocations</strong></li>
+                    <li>One CompanyBusinessLocation can have <strong>many ServiceCompanyBusinessLocations</strong></li>
+                    <li>One ServiceCompanyBusinessLocation has <strong>many ServiceCompanyBusinessLocationBookings</strong></li>
+                    <li>One ServiceCompanyBusinessLocation has <strong>many ServiceCompanyBusinessLocationPriceHistories</strong></li>
+                    <li>One ServiceCompanyBusinessLocation has <strong>many ServiceCompanyBusinessLocationImages</strong></li>
+                    <li>One ServiceCompanyBusinessLocation has <strong>many ServiceCompanyBusinessLocationComments</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Model 4: ServiceCompanyBusinessLocationImage -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">4</div>
+                <h2>ServiceCompanyBusinessLocationImage Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>Photos/images specific to a service at a specific location.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example - Hair Coloring at Downtown Location</h4>
+                <div class="image-showcase">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1633681926035-ec1ac984418a?w=500" alt="Salon Interior">
+                        <div class="image-caption">Salon Interior</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=500" alt="Before After 1">
+                        <div class="image-caption">Before & After Example 1</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1470438994530-7c978c6e8c61?w=500" alt="Before After 2">
+                        <div class="image-caption">Before & After Example 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Why Separate From ServiceImage?</h3>
+                <div class="info-badge">ServiceImage: Generic images of the service itself</div>
+                <div class="info-badge">ServiceCompanyBusinessLocationImage: Location-specific images</div>
+            </div>
+
+            <div class="relationships">
+                <h4>Relationships</h4>
+                <ul>
+                    <li>One ServiceCompanyBusinessLocation has <strong>many ServiceCompanyBusinessLocationImages</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Model 5: Price History -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">5</div>
+                <h2>ServiceCompanyBusinessLocationPriceHistory Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>A record of all price changes for a service at a location over time.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example - Hair Coloring Price Changes</h4>
+                <div class="code-block">
+<span class="code-comment">Jan 1, 2024:</span> <span class="code-value">$75.00</span> (original price)
+<span class="code-comment">Apr 1, 2024:</span> <span class="code-value">$80.00</span> (seasonal increase)
+<span class="code-comment">Jul 1, 2024:</span> <span class="code-value">$85.00</span> (summer premium)
+<span class="code-comment">Oct 1, 2024:</span> <span class="code-value">$80.00</span> (back to normal)
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Why It's Important</h3>
+                <div class="success-badge">Audit Trail</div>
+                <div class="success-badge">Analytics</div>
+                <div class="success-badge">Reporting</div>
+                <div class="success-badge">Compliance</div>
+                <p style="margin-top: 1rem;">Track why and when prices changed, see pricing trends, calculate revenue accurately using historical prices, and maintain compliance with regional requirements.</p>
+            </div>
+        </div>
+
+        <!-- Model 6: Booking -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">6</div>
+                <h2>ServiceCompanyBusinessLocationBooking Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>A customer's booking/reservation for a service at a specific location.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example - Customer Booking</h4>
+                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800" alt="Customer Booking" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+                <div class="code-block">
+<span class="code-property">ServiceCompanyBusinessLocationBookingId</span> = <span class="code-value">2001</span>
+<span class="code-property">ServiceCompanyBusinessLocationId</span> = <span class="code-value">1001</span> <span class="code-comment">(Hair Coloring - Downtown)</span>
+<span class="code-property">CustomerId</span> = <span class="code-value">300</span> <span class="code-comment">(John Doe)</span>
+<span class="code-property">CustomerName</span> = <span class="code-value">"John Doe"</span>
+<span class="code-property">BookingDate</span> = <span class="code-value">January 20, 2024</span>
+<span class="code-property">StartTime</span> = <span class="code-value">14:00</span> <span class="code-comment">(2:00 PM)</span>
+<span class="code-property">EndTime</span> = <span class="code-value">15:30</span> <span class="code-comment">(3:30 PM)</span>
+<span class="code-property">PaymentStatus</span> = <span class="code-value">"Pending"</span>
+<span class="code-property">BookingStatus</span> = <span class="code-value">"Confirmed"</span>
+<span class="code-property">StaffId</span> = <span class="code-value">50</span> <span class="code-comment">(Assigned hair stylist)</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Key Booking States</h3>
+                <p><strong>BookingStatus:</strong> Confirmed, Pending, Completed, Cancelled</p>
+                <p><strong>PaymentStatus:</strong> Pending, Paid, Refunded, Failed</p>
+            </div>
+        </div>
+
+        <!-- Model 7: Comments -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">7</div>
+                <h2>ServiceCompanyBusinessLocationComment Model</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>What It Is</h3>
+                <p>Customer reviews/feedback and ratings for a service at a specific location.</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Real-World Example - Customer Review</h4>
+                <img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=800" alt="Customer Review" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+                <div class="code-block">
+<span class="code-property">ServiceCompanyBusinessLocationCommentId</span> = <span class="code-value">3001</span>
+<span class="code-property">CustomerId</span> = <span class="code-value">300</span> <span class="code-comment">(John Doe)</span>
+<span class="code-property">ServiceCompanyBusinessLocationId</span> = <span class="code-value">1001</span> <span class="code-comment">(Hair Coloring - Downtown)</span>
+<span class="code-property">RatingId</span> = <span class="code-value">5</span> <span class="code-comment">(5-star rating)</span>
+<span class="code-property">CommentTitle</span> = <span class="code-value">"Excellent Service!"</span>
+<span class="code-property">Comment</span> = <span class="code-value">"Maria did an amazing job. The color looks perfect and the service was friendly."</span>
+<span class="code-property">CommentDate</span> = <span class="code-value">January 20, 2024</span>
+<span class="code-property">IsActive</span> = <span class="code-value">true</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Why This Model</h3>
+                <div class="success-badge">Social Proof</div>
+                <div class="success-badge">Quality Control</div>
+                <div class="success-badge">Improvement</div>
+                <p style="margin-top: 1rem;">Other customers see reviews before booking, business owners can see feedback on each service at each location, and identify which locations/services need improvement.</p>
+            </div>
+
+            <div class="relationships">
+                <h4>Relationships</h4>
+                <ul>
+                    <li>One Customer has <strong>many ServiceCompanyBusinessLocationComments</strong></li>
+                    <li>One ServiceCompanyBusinessLocation has <strong>many ServiceCompanyBusinessLocationComments</strong></li>
+                    <li>One Rating has <strong>many ServiceCompanyBusinessLocationComments</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Complete Data Flow -->
+        <div class="model-section" id="flow">
+            <div class="model-header">
+                <div class="model-number">8</div>
+                <h2>Complete Data Flow - Real Booking Example</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>Scenario: Customer books Hair Coloring at BeautyPro Downtown</h3>
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <h4>Step 1: Setup (Admin creates data)</h4>
+                    <p>1. Create ServiceType: "Hair Services"</p>
+                    <p>2. Create Service: "Hair Coloring" ($75)</p>
+                    <p>3. Create ServiceCompanyBusinessLocation: Links Hair Coloring to Downtown location with price $80</p>
+                    <p>4. Create ServiceCompanyBusinessLocationImages: Upload before/after photos</p>
+                    <p>5. Set price history when price changes</p>
+                </div>
+
+                <div class="flow-step">
+                    <h4>Step 2: Customer Searches</h4>
+                    <p>Customer sees:</p>
+                    <p>• ServiceType: "Hair Services"</p>
+                    <p>• Service: "Hair Coloring"</p>
+                    <p>• Location: Downtown</p>
+                    <p>• Price: $80 (from ServiceCompanyBusinessLocation)</p>
+                    <p>• Images: Before/after photos</p>
+                    <p>• Reviews: 4.8 stars</p>
+                </div>
+
+                <div class="flow-step">
+                    <h4>Step 3: Customer Books</h4>
+                    <p>Create ServiceCompanyBusinessLocationBooking:</p>
+                    <p>• Date: Jan 20, 2024</p>
+                    <p>• Time: 2:00 PM - 3:30 PM</p>
+                    <p>• Staff: Maria (StaffId = 50)</p>
+                    <p>• Status: Confirmed</p>
+                    <p>• Payment: Pending</p>
+                </div>
+
+                <div class="flow-step">
+                    <h4>Step 4: Service Completion</h4>
+                    <p>1. Staff provides service</p>
+                    <p>2. Payment is processed → PaymentStatus = "Paid"</p>
+                    <p>3. BookingStatus = "Completed"</p>
+                </div>
+
+                <div class="flow-step">
+                    <h4>Step 5: Customer Reviews</h4>
+                    <p>Customer creates ServiceCompanyBusinessLocationComment:</p>
+                    <p>• Rating: 5 stars</p>
+                    <p>• Comment: "Excellent work!"</p>
+                    <p>• This updates location's average rating</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Common Issues -->
+        <div class="model-section">
+            <div class="model-header">
+                <div class="model-number">⚠️</div>
+                <h2>Common Issues & Notes</h2>
+            </div>
+
+            <div class="subsection">
+                <h3>1. Issue in ServiceCompanyBusinessLocationComment</h3>
+                <div class="warning-badge">Type Mismatch</div>
+                <div class="code-block">
+<span class="code-comment">// WRONG:</span>
+<span class="code-property">public Staff? Customer { get; set; }</span>
+
+<span class="code-comment">// SHOULD BE:</span>
+<span class="code-property">public Customer? Customer { get; set; }</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>2. Unused Property</h3>
+                <div class="warning-badge">Potentially Unused</div>
+                <div class="code-block">
+<span class="code-property">public int? ServiceCompanyBusinessLocationBookingId { get; set; }</span>
+<span class="code-comment">// In ServiceCompanyBusinessLocation - appears unused</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>3. Good Practice</h3>
+                <div class="success-badge">Best Practice</div>
+                <p>The models include audit fields (CreatedDate, ModifiedDate, CreatedByStaffId) for tracking who did what and when.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>4. Naming Inconsistency</h3>
+                <div class="warning-badge">Naming Issue</div>
+                <div class="code-block">
+<span class="code-comment">// Inconsistent casing:</span>
+<span class="code-property">public int? CreatedforCompanyId { get; set; }</span>
+
+<span class="code-comment">// Should be:</span>
+<span class="code-property">public int? CreatedForCompanyId { get; set; }</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="model-section" id="summary">
+            <div class="model-header">
+                <div class="model-number">📊</div>
+                <h2>Summary - What This System Does</h2>
+            </div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ServiceType</strong></td>
+                        <td>Categorize services (Hair, Makeup, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Service</strong></td>
+                        <td>Define specific service offerings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ServiceCompanyBusinessLocation</strong></td>
+                        <td>Link services to locations with location-specific pricing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ServiceImage</strong></td>
+                        <td>Generic service photos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ServiceCompanyBusinessLocationImage</strong></td>
+                        <td>Location-specific service photos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ServiceCompanyBusinessLocationPriceHistory</strong></td>
+                        <td>Track price changes over time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ServiceCompanyBusinessLocationBooking</strong></td>
+                        <td>Customer reservations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ServiceCompanyBusinessLocationComment</strong></td>
+                        <td>Customer reviews and ratings</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="subsection" style="margin-top: 2rem;">
+                <p style="font-size: 1.1rem; text-align: center; color: #667eea; font-weight: 600;">
+                    This is a <strong>sophisticated multi-tenant, multi-location service booking platform</strong> similar to booking systems used by salons, fitness centers, or service marketplaces.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Service Models Documentation. Built for modern service booking platforms.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.9rem;">Professional Technical Documentation</p>
+    </footer>
+</body>
+</html>
